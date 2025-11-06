@@ -8,7 +8,7 @@ def build_table(section):
     """Build a Form.io table layout from rows."""
     rows = section["rows"]
     table = {
-        "label": section.get("name", "Table"),
+        "label": section.get("label", "Table"),
         "key": section.get("key", "table"),
         "type": "table",
         "input": True,
@@ -32,9 +32,10 @@ def build_table(section):
 def build_datagrid(section):
     """Build a Form.io datagrid layout."""
     grid = {
-        "label": section["name"],
+        "label": section["label"],
         "key": section["key"],
         "type": "datagrid",
+        "hideLabel": True,
         "input": True,
         "customClass": section.get("customClass", ""),
         "components": [],
@@ -55,6 +56,8 @@ def build_form(config):
             components.append(build_table(section))
         elif stype == "datagrid":
             components.append(build_datagrid(section))
+        elif stype in ["textfield", "number", "email", "time", "dateTimePicker", "select", "textarea", "DigitalSignature", "htmlelement"]:
+            components.append(build_component(section))
         else:
             print(f"⚠️ Unknown section type: {stype}")
     return components

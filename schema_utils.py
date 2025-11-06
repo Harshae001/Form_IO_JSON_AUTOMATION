@@ -1,7 +1,7 @@
 def build_component(field):
     """Generate a Form.io component dict from a simple field spec."""
     base = {
-        "label": field["label"],
+        "label": field.get("label", field.get("name", "Unnamed Field")),
         "key": field.get("key", field["label"].lower().replace(" ", "_")),
         "type": field["type"],
         "customClass": field.get("customClass","w-250px font-weight-bold fs-1"),
@@ -10,6 +10,17 @@ def build_component(field):
         "input": True,
     }
 
+    if field["type"] == "textfield":
+        base.update({
+            # "placeholder": field.get("placeholder", "Enter text"),
+            "defaultValue": field.get("defaultValue", "")
+        })
+
+    if field["type"] == "htmlelement":
+        base.update({
+            # "tag": field.get("tag", "div"),
+            "content": field.get("content", "html"),
+        })
     # Add type-specific defaults
     # if field["type"] in ["textfield", "number", "email", "time", "dateTimePicker"]:
     #     base["validate"] = {"required": field.get("required", False)}

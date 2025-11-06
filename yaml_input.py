@@ -1,16 +1,18 @@
 config_yaml = """
 sections:
-  - name: "Main Table"
+  - label: "Main Table"
     type: "table"
+    key: "main_table"
     rows:
       - 
-        - { label: "Audit Date", type: "dateTimePicker", key: "audit_date", validate: { required: true } }
+        - { label: "Audit Date", type: "dateTimePicker", key: "audit_date"}
         - { label: "Inspector", type: "textfield", key: "inspector" }
       - 
         - { label: "Department", type: "select", key: "department" }
         - { label: "Location", type: "textfield", key: "location" }
+        - { label: "Shift", type: "htmlelement", key: "html1" }
 
-  - name: "Drawing Issue Verification Record"
+  - label: "Drawing Issue Verification Record"
     type: "datagrid"
     key: "drawing_issue_verification_record"
     customClass: "sticky-table-header height-420 stick-table-column-header"
@@ -24,5 +26,17 @@ sections:
       - { label: "QA Rev", key: "qc_rev", type: "textfield" }
       - { label: "Remarks", key: "remarks", type: "textarea" }
       - { label: "Verified By", key: "verified_by", type: "DigitalSignature" }
+      
+  - label: "Step Name"
+    type: "textfield"
+    key: "step_name"
+    hidden: true
+    customClass: "font-weight-bold fs-1"
+    clearOnHide: false
+    
+  - label: "Remarks"
+    type: "textarea"
+    key: "overall_remarks"
+    customClass: "font-weight-bold fs-1"
 
 """
