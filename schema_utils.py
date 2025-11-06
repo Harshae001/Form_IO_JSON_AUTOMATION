@@ -16,10 +16,17 @@ def build_component(field):
             "defaultValue": field.get("defaultValue", "")
         })
 
-    if field["type"] == "htmlelement":
+    if field["type"] == "htmlelement" and field["key"]=="form_title":
         base.update({
             # "tag": field.get("tag", "div"),
-            "content": field.get("content", "html"),
+            "customConditional": "const element = instance.element; const tableElement = element.closest(\"td\"); tableElement.style.backgroundColor = '#EB5D07';",
+            "content": "<center><b style=\"color:white;\">Name</b></center>",
+            "tag": "h4",
+        })
+
+    elif field["type"] == "htmlelement":
+        base.update({
+            "content": field.get("content", "<div>HTML Element</div>"),
         })
     # Add type-specific defaults
     # if field["type"] in ["textfield", "number", "email", "time", "dateTimePicker"]:
