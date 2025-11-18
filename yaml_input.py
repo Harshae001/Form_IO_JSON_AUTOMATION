@@ -19,12 +19,12 @@ primary_section:
               key: "main_table"
               rows:
                 -
-                  - { label: "Audit Date", type: "dateTimePicker", key: "audit_date" }
+                  - { label: "Date", type: "dateTimePicker", key: "date" }
                   - { label: "Inspector", type: "textfield", key: "inspector" }
                 -
                   - { label: "Department", type: "select", key: "department" }
                   - { label: "Location", type: "textfield", key: "location" }
-                  - { label: "Shift", type: "htmlelement", key: "html1" }
+                  - { label: "Shift", type: "textfield", key: "shift" }
 
             - label: "Drawing Issue Verification Record"
               type: "datagrid"
@@ -40,6 +40,23 @@ primary_section:
                 - { label: "QA Rev", key: "qc_rev", type: "textfield" }
                 - { label: "Remarks", key: "remarks", type: "textarea" }
                 - { label: "Verified By", key: "verified_by", type: "DigitalSignature" }
+                
+            - label: "Remarks"
+              type: "textarea"
+              key: "overall_remarks"
+              customClass: "font-weight-bold fs-1"
+                
+            - label: "E-sign Table"
+              type: "table"
+              key: "e-sign_table"
+              customClass: "font-weight-bold fs-1"
+              rows:
+                -
+                  - { label: "Analysed By", type: "htmlelement", key: "html2" }
+                  - { label: "Analysed By", type: "DigitalSignature", key: "analysed_by", hideLabel: true }
+                  - { label: "Approved By", type: "htmlelement", key: "html3" }
+                  - { label: "Approved By", type: "DigitalSignature", key: "approved_by", hideLabel: true }
+                
 
             - label: "Step Name"
               type: "textfield"
@@ -47,10 +64,8 @@ primary_section:
               hidden: true
               customClass: "font-weight-bold fs-1"
               clearOnHide: false
+              defaultValue: "Step Name"
 
-            - label: "Remarks"
-              type: "textarea"
-              key: "overall_remarks"
-              customClass: "font-weight-bold fs-1"
+            
 
 """
