@@ -20,7 +20,7 @@ def build_component(field):
         base.update({
             # "tag": field.get("tag", "div"),
             "customConditional": "const element = instance.element; const tableElement = element.closest(\"td\"); tableElement.style.backgroundColor = '#EB5D07';",
-            "content": "<center><b style=\"color:white;\">Logbook Name</b></center>",
+            "content": f'<center><b style="color:white;">{field.get("label", "<h4>HTML Element</h4>")}</b></center>',
             "tag": "h4",
         })
 

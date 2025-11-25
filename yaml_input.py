@@ -6,7 +6,7 @@ primary_section:
     rows:
       -
         - section0:
-            - label: "Form Title"
+            - label: "Logbook Step 1"
               type: "htmlelement"
               key: "form_title"
               hidden: true
@@ -21,6 +21,7 @@ primary_section:
                 -
                   - { label: "Date", type: "dateTimePicker", key: "date" }
                   - { label: "Inspector", type: "textfield", key: "inspector" }
+                  - { label: "tpd", type: "select", key: "tpd" }
                 -
                   - { label: "Department", type: "select", key: "department" }
                   - { label: "Location", type: "textfield", key: "location" }
@@ -48,7 +49,7 @@ primary_section:
                 
             - label: "E-sign Table"
               type: "table"
-              key: "e-sign_table"
+              key: "e_sign_table"
               customClass: "font-weight-bold fs-1"
               rows:
                 -
@@ -65,7 +66,5 @@ primary_section:
               customClass: "font-weight-bold fs-1"
               clearOnHide: false
               defaultValue: "Step Name"
-
-            
 
 """
