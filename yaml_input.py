@@ -21,7 +21,7 @@ primary_section:
                 -
                   - { label: "Date", type: "dateTimePicker", key: "date" }
                   - { label: "Inspector", type: "textfield", key: "inspector" }
-                  - { label: "tpd", type: "select", key: "tpd" }
+                  - { label: "TPD", type: "select", key: "tpd" }
                 -
                   - { label: "Department", type: "select", key: "department" }
                   - { label: "Location", type: "textfield", key: "location" }
@@ -32,7 +32,7 @@ primary_section:
               key: "drawing_issue_verification_record"
               customClass: "sticky-table-header height-420 stick-table-column-header"
               fields:
-                - { label: "Job Change Date", key: "date", type: "dateTimePicker", format: "dd-MM-yyyy" }
+                - { label: "Job Change Date", key: "job_change_date", type: "dateTimePicker", format: "dd-MM-yyyy" }
                 - { label: "Time", key: "time", type: "time" }
                 - { label: "FG Code", key: "fg_code", type: "textfield" }
                 - { label: "Job Name", key: "job_name", type: "select", dataSrc: "custom" }

@@ -72,7 +72,10 @@ def build_component(field):
 
     elif field["type"] == "DigitalSignature":
         base.update({
-            "hideLabel": field.get("hideLabel", False)
+            "hideLabel": field.get("hideLabel", False),
+            "properties":{
+                "signature_keys": field.get("signature_keys", "step_name")
+            }
         })
 
     return base
