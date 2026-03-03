@@ -1,7 +1,7 @@
 def build_component(field):
     """Generate a Form.io component dict from a simple field spec."""
     base = {
-        "label": field["label"],
+        "label": field.get("label", field.get("name", "Unnamed Field")),
         "key": field.get("key", field["label"].lower().replace(" ", "_")),
         "type": field["type"],
         "customClass": field.get("customClass","w-250px font-weight-bold fs-1"),
@@ -10,13 +10,29 @@ def build_component(field):
         "input": True,
     }
 
-    # Add type-specific defaults
-    # if field["type"] in ["textfield", "number", "email", "time", "dateTimePicker"]:
-    #     base["validate"] = {"required": field.get("required", False)}
-    if field["type"] == "dateTimePicker":
+    if field["type"] == "textfield":
+        base.update({
+            # "placeholder": field.get("placeholder", "Enter text"),
+            "defaultValue": field.get("defaultValue", "")
+        })
+
+    elif field["type"] == "htmlelement" and field["key"]=="form_title":
+        base.update({
+            # "tag": field.get("tag", "div"),
+            "customConditional": "const element = instance.element; const tableElement = element.closest(\"td\"); tableElement.style.backgroundColor = '#EB5D07';",
+            "content": f'<center><b style="color:white;">{field.get("label", "<h4>HTML Element</h4>")}</b></center>',
+            "tag": "h4",
+        })
+
+    elif field["type"] == "htmlelement":
+        base.update({
+            "content": field.get("label", "<div>HTML Element</div>"),
+        })
+
+    elif field["type"] == "dateTimePicker":
         key = field.get("key", field["label"].lower().replace(" ", "_"))
         base.update({
-            "format": field.get("format", "yyyy-MM-dd HH:mm:ss"),
+
             "calculateValue": f"""function epochToFormattedDate(epoch) {{
       let date = new Date(epoch);
       let year = date.getFullYear();
@@ -34,24 +50,32 @@ def build_component(field):
                 "disableWeekdays": field.get("disableWeekdays", False),
                 "disablePast": field.get("disablePast", False),
                 "enableTime": field.get("enableTime", False),
-                "disableFuture": field.get("disableFuture", False),
-                "format": field.get("format","dd-MM-yyyy")
+                "format": field.get("format", "dd-MM-yyyy"),
+                "disableFuture": field.get("disableFuture", False)
             }
         })
 
-    if field["type"] == "number":
+    elif field["type"] == "number":
         base.update({
             "requireDecimal":field.get("requireDecimal", False),
             "decimalLimit":field.get("decimalLimit", 2),
         })
 
 
-    if field["type"] == "select":
+    elif field["type"] == "select":
         base.update({
-            "data": {"values": [{"label": "Option 1", "value": "option1"}]},
+            "data": {"values": [{"label": "Add values", "value": "Add values"}]},
             "dataSrc": "values",
             "placeholder":"Select",
             "widget": "html5"
+        })
+
+    elif field["type"] == "DigitalSignature":
+        base.update({
+            "hideLabel": field.get("hideLabel", False),
+            "properties":{
+                "signature_keys": field.get("signature_keys", "step_name")
+            }
         })
 
     return base
