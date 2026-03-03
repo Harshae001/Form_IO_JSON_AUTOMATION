@@ -126,3 +126,4 @@ if __name__ == "__main__":
     config = yaml.safe_load(config_yaml)
     json_output = build_form(config)
     print(json.dumps(json_output, indent=2))
+    print("✅ Form.io JSON generated successfully.")
