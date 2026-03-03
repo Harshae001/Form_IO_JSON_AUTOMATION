@@ -127,3 +127,4 @@ if __name__ == "__main__":
     json_output = build_form(config)
     print(json.dumps(json_output, indent=2))
     print("✅ Form.io JSON generated successfully in the branch_102")
+    print("✅ Form.io JSON generated successfully.")
